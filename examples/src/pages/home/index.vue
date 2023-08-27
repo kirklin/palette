@@ -4,6 +4,7 @@ import { presetPalettes } from "@kirklin/palette";
 defineOptions({
   name: "Home",
 });
+// eslint-disable-next-line no-console
 console.log(presetPalettes);
 </script>
 
