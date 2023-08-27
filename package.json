@@ -51,6 +51,9 @@
     "typecheck": "tsc --noEmit",
     "up": "taze major -r -w -I"
   },
+  "dependencies": {
+    "colord": "^2.9.3"
+  },
   "devDependencies": {
     "@antfu/ni": "^0.21.5",
     "@kirklin/eslint-config": "^0.5.2",
@@ -65,8 +68,5 @@
     "unbuild": "^1.2.1",
     "vite": "^4.4.9",
     "vitest": "^0.34.1"
-  },
-  "dependencies": {
-    "colord": "^2.9.3"
   }
 }
