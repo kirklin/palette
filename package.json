@@ -65,5 +65,8 @@
     "unbuild": "^1.2.1",
     "vite": "^4.4.9",
     "vitest": "^0.34.1"
+  },
+  "dependencies": {
+    "colord": "^2.9.3"
   }
 }
