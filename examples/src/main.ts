@@ -15,6 +15,7 @@ import App from "~/App.vue";
 import "@kirklin/reset-css/kirklin.css";
 import "~/styles/main.css";
 import "uno.css";
+import "daisyui/dist/full.css";
 
 const app = createApp(App);
 app.use(createI18n({
