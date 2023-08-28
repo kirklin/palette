@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@kirklin/logger": "^0.0.2",
-    "@kirklin/palette": "workspace:*",
+    "@kirklin/palette": "0.0.0",
     "@kirklin/reset-css": "^0.0.3",
     "@vueuse/core": "^10.4.0",
     "daisyui": "^3.6.3",
