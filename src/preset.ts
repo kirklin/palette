@@ -16,6 +16,8 @@ const presetPrimaryColors: Record<string, string> = {
   magenta: "#F5319D",
   gray: "#86909c",
   grey: "#86909c",
+  black: "#000000",
+  white: "#ffffff",
 };
 
 const presetPalettes: PalettesProps = {};
@@ -43,6 +45,8 @@ const kirklinBlue = presetPalettes.kirklinBlue;
 const purple = presetPalettes.purple;
 const pinkpurple = presetPalettes.pinkpurple;
 const magenta = presetPalettes.magenta;
+const black = presetPalettes.black;
+const white = presetPalettes.white;
 
 presetPalettes.gray = [
   "#f7f8fa",
@@ -91,4 +95,6 @@ export {
   magenta,
   grey,
   gray,
+  black,
+  white,
 };
