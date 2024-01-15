@@ -71,14 +71,14 @@ const showColorPaletteValue = ref(false);
   <div class="color-palette">
     <div
       class="color-palette__header"
-      :style="{ backgroundColor: primaryColor }"
+      :style="{ backgroundColor: primaryColor, color: getContrastingColor(primaryColor) }"
     >
       <div class="color-palette__header-title">
         {{ colorName }}
       </div>
       <div class="color-palette__header-value">
         <span class="color-palette__header-value-name">{{ colorName }}-6</span>
-        <span class="color-palette__header-value-color">{{ primaryColor }}</span>
+        <span class="color-palette__header-value-color" :style="getColorStyle(primaryColor)">{{ primaryColor }}</span>
       </div>
     </div>
     <div v-for="(color, index) in generateColorPalettes(primaryColor)" :key="index">
