@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { presetPrimaryColors } from "@kirklin/palette";
+import { presetPrimaryColors } from "../../../../src";
 import ColorPalette from "~/pages/home/components/colorPalette/index.vue";
 
 defineOptions({

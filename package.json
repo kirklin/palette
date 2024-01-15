@@ -49,8 +49,7 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "up": "taze major -r -w -I",
-    "postinstall": "pnpm unbuild"
+    "up": "taze major -r -w -I"
   },
   "dependencies": {
     "colord": "^2.9.3"

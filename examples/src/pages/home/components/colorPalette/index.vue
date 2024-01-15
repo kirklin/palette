@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { generateColorPalettes } from "@kirklin/palette";
+import { generateColorPalettes } from "../../../../../../src";
 import { colord, extend } from "colord";
 import a11yPlugin from "colord/plugins/a11y";
 import { copyToClipboard } from "~/utils/browserHelper";
