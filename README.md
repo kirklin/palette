@@ -11,7 +11,6 @@
 [code-style-image]: https://img.shields.io/badge/code__style-%40kirklin%2Feslint--config-brightgreen
 [code-style-url]: https://github.com/kirklin/eslint-config/
 
-
 The `@kirklin/palette` library is a utility for generating color palettes based on a given color and index. It provides functions to create color variations for different purposes such as light and dark themes. This README will explain the usage of the library and its core functionalities.
 
 ## Installation
@@ -21,7 +20,6 @@ You can install the library using npm:
 ```bash
 npm install @kirklin/palette
 ```
-
 
 ## Usage
 

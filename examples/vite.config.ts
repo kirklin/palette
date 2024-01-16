@@ -8,8 +8,6 @@ import IconsResolver from "unplugin-icons/resolver";
 import Inspect from "vite-plugin-inspect";
 import VueDevTools from "vite-plugin-vue-devtools";
 
-// vite.config.ts
-import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
 import UnoCss from "unocss/vite";
 
 // https://vitejs.dev/config/
@@ -18,7 +16,6 @@ export default defineConfig({
     host: "localhost",
     port: 8888,
     open: true,
-    https: false,
     proxy: {},
   },
   plugins: [
@@ -65,14 +62,6 @@ export default defineConfig({
       resolvers: [
         IconsResolver(),
       ],
-    }),
-
-    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
-    VueI18nPlugin({
-      runtimeOnly: true,
-      compositionOnly: true,
-      fullInstall: true,
-      include: [resolve(__dirname, "src/locales/**")],
     }),
 
     // https://github.com/antfu/vite-plugin-inspect
