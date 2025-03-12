@@ -62,13 +62,26 @@ const DARK_COLOR_COUNT_BELOW_MAIN = 4;
 type ColorIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 /**
+ * 颜色输出格式类型
+ * Color output format type
+ */
+export type ColorFormat = "hex" | "rgb" | "rgba" | "hsl" | "hsla";
+
+/**
  * 根据颜色和索引生成调色板颜色
  * Generate color palette based on the color and index
  * @param color - 颜色 The color
  * @param index - 调色板的对应的色号(6为主色号) The index of the color in the palette (6 for the main color)
- * @returns 返回hex格式的颜色 The hex color value
+ * @param format - 颜色输出格式，可选 hex, rgb, rgba, hsl 或 hsla，默认为 hex
+ * @param alpha - 当格式为 rgba 或 hsla 时使用的透明度值，默认为 1
+ * @returns 返回指定格式的颜色 The color value in specified format
  */
-export function generateColorPalette(color: AnyColor, index: ColorIndex): string {
+export function generateColorPalette(
+  color: AnyColor,
+  index: ColorIndex,
+  format: ColorFormat = "hex",
+  alpha: number = 1,
+): string {
   const transformedColor = colord(color);
 
   // 判断输入值是否有效
@@ -77,7 +90,8 @@ export function generateColorPalette(color: AnyColor, index: ColorIndex): string
   }
 
   if (index === MAIN_COLOR_INDEX) {
-    return colord(transformedColor).toHex();
+    // 直接返回转换格式后的主色
+    return getColorInFormat(transformedColor, format, alpha);
   }
 
   const isLight = index < MAIN_COLOR_INDEX;
@@ -90,7 +104,32 @@ export function generateColorPalette(color: AnyColor, index: ColorIndex): string
     v: getValue(hsv, i, isLight),
   };
 
-  return colord(newHsv).toHex();
+  return getColorInFormat(colord(newHsv), format, alpha);
+}
+
+/**
+ * 根据指定格式获取颜色值
+ * Get color value in specified format
+ * @param color - colord颜色对象
+ * @param format - 颜色输出格式
+ * @param alpha - 透明度值 (用于 rgba 和 hsla 格式)
+ * @returns 指定格式的颜色字符串
+ */
+function getColorInFormat(color: ReturnType<typeof colord>, format: ColorFormat, alpha: number = 1): string {
+  switch (format) {
+    case "hex":
+      return color.toHex();
+    case "rgb":
+      return color.toRgbString();
+    case "rgba":
+      return color.alpha(alpha).toRgbString();
+    case "hsl":
+      return color.toHslString();
+    case "hsla":
+      return color.alpha(alpha).toHslString();
+    default:
+      return color.toHex();
+  }
 }
 
 /**
@@ -116,21 +155,28 @@ const DARK_COLOR_MAP = [
  * @param color - The color
  * @param darkTheme - Whether to generate colors for a dark theme
  * @param darkThemeMixColor - The mix color for the dark theme, default is #141414
- * @returns The array of hex color values
+ * @param format - 颜色输出格式，可选 hex, rgb, rgba, hsl 或 hsla，默认为 hex
+ * @param alpha - 当格式为 rgba 或 hsla 时使用的透明度值，默认为 1
+ * @returns The array of color values in specified format
  */
-export function generateColorPalettes(color: AnyColor, darkTheme = false, darkThemeMixColor = "#141414"): string[] {
+export function generateColorPalettes(
+  color: AnyColor,
+  darkTheme = false,
+  darkThemeMixColor = "#141414",
+  format: ColorFormat = "hex",
+  alpha: number = 1,
+): string[] {
   const indexes: ColorIndex[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const patterns = indexes.map(index => generateColorPalette(color, index));
+  const patterns = indexes.map(index => generateColorPalette(color, index, format, alpha));
 
   if (darkTheme) {
     const darkPatterns = DARK_COLOR_MAP.map(({ index, opacity }) => {
       const darkColor = colord(darkThemeMixColor).mix(patterns[index], opacity);
-
-      return darkColor;
+      return getColorInFormat(darkColor, format, alpha);
     });
 
-    return darkPatterns.map(item => colord(item).toHex());
+    return darkPatterns;
   }
 
   return patterns;
