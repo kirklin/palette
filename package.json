@@ -1,7 +1,7 @@
 {
   "name": "@kirklin/palette",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "pnpm@10.6.2",
   "description": "",
   "author": "Kirk Lin <https://github.com/kirklin>",
