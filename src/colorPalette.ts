@@ -121,12 +121,18 @@ function getColorInFormat(color: ReturnType<typeof colord>, format: ColorFormat,
       return color.toHex();
     case "rgb":
       return color.toRgbString();
-    case "rgba":
-      return color.alpha(alpha).toRgbString();
+    case "rgba": {
+      // 强制使用 rgba 格式，即使 alpha 为 1
+      const { r, g, b } = color.toRgb();
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
     case "hsl":
       return color.toHslString();
-    case "hsla":
-      return color.alpha(alpha).toHslString();
+    case "hsla": {
+      // 强制使用 hsla 格式，即使 alpha 为 1
+      const { h, s, l } = color.toHsl();
+      return `hsla(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%, ${alpha})`;
+    }
     default:
       return color.toHex();
   }
